@@ -7,11 +7,7 @@ import { ArrayKey, IsTuple, TupleKeys } from './common';
  * Helper type for recursively constructing paths through a type.
  * See {@link Path}
  */
-type PathImpl<K extends string | number, V> = V extends
-  | Primitive
-  | BrowserNativeObject
-  ? `${K}`
-  : `${K}` | `${K}.${Path<V>}`;
+type PathImpl<K extends string | number, V> = V extends Primitive | BrowserNativeObject | SharedArrayBuffer ? `${K}` : `${K}` | `${K}.${Path<V>}`;
 
 /**
  * Type which eagerly collects all paths through a type
